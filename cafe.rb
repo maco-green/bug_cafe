@@ -1,18 +1,17 @@
-  #frozen_string_literal: true
-  #require 'debug'
+# frozen_string_literal: true
 
 DRINKS = [
-  { name: 'コーヒー', price: '300' },
-  { name: 'カフェラテ', price: '400' },
-  { name: 'チャイ', price: '460' },
-  { name: 'エスプレッソ', price: '340' },
-  { name: '緑茶', price: '450' }
+  { name: 'コーヒー', price: 300 },
+  { name: 'カフェラテ', price: 400 },
+  { name: 'チャイ', price: 460 },
+  { name: 'エスプレッソ', price: 340 },
+  { name: '緑茶', price: 450 }
 ].freeze
 
 FOODS = [
-  { name: 'チーズケーキ', price: '470' },
-  { name: 'アップルパイ', price: '520' },
-  { name: 'ホットサンド', price: '410' }
+  { name: 'チーズケーキ', price: 470 },
+  { name: 'アップルパイ', price: 520 },
+  { name: 'ホットサンド', price: 410 }
 ].freeze
 
 def take_order(menus)
@@ -21,17 +20,16 @@ def take_order(menus)
   end
   print '>'
   order_number = gets.to_i
-  puts "#{menus[order_number -1][:name]}(#{menus[order_number -1][:price]}円)ですね。"
-  order_number
+  order_index = order_number - 1
+  puts "#{menus[order_index][:name]}(#{menus[order_index][:price]}円)ですね。"
+  order_index
 end
 
 puts 'bugカフェへようこそ！ご注文は？ 番号でどうぞ'
-order1 = take_order(DRINKS)
+drink_order_index = take_order(DRINKS)
 
 puts 'フードメニューはいかがですか?'
-order2 = take_order(FOODS)
+food_order_index = take_order(FOODS)
 
-#binding.break
-total = FOODS[order2 -1][:price].to_i + DRINKS[order1 -1][:price].to_i
+total = FOODS[food_order_index][:price] + DRINKS[drink_order_index][:price]
 puts "お会計は#{total}円になります。ありがとうございました！"
-
